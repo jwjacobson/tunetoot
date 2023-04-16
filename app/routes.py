@@ -45,5 +45,5 @@ def index():
         )
         db.session.add(new_tune)
         db.session.commit()
-        flash(f"Tune {new_tune.title} entered.")
+        flash(f"Tune {new_tune.title} entered.", 'info')
     return render_template("index.html", form=form)
