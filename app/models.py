@@ -1,7 +1,7 @@
 from datetime import datetime
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
+# from flask_login import UserMixin
 from hashlib import md5
 
 """
@@ -19,8 +19,8 @@ class Tune(db.Model):
     title = db.Column(db.String(120), unique=True)
     composer = db.Column(db.String(64))
     key = db.Column(db.String(3))
-    other_key = db.Column(db.String(3))
-    form = db.Column(db.String(20))
+    other_key = db.Column(db.String(12))
+    song_form = db.Column(db.String(20))
     style = db.Column(db.String(20))
     meter = db.Column(db.SmallInteger)
     year = db.Column(db.SmallInteger)
@@ -33,7 +33,7 @@ class Tune(db.Model):
     def __repr__(self):
         return f'<Tune {self.id}|{self.title}>'
 
-class User(UserMixin, db.Model):
+class User(db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
