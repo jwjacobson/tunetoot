@@ -1,11 +1,15 @@
 from app import app, db
-from flask import render_template, flash
+from flask import render_template, flash, url_for
 from app.forms import TuneForm
 from app.models import Tune
 
 @app.route('/')
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/index')
 def index():
+    return render_template("index.html")
+
+@app.route('/entry', methods=['GET', 'POST'])
+def entry():
     form = TuneForm()
     if form.validate_on_submit():
         print("Validated.")
@@ -46,4 +50,4 @@ def index():
         db.session.add(new_tune)
         db.session.commit()
         flash(f"Tune {new_tune.title} entered.", 'info')
-    return render_template("index.html", form=form)
+    return render_template("entry.html", form=form)

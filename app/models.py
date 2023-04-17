@@ -16,8 +16,8 @@ db.Column("tune_id", db.Integer, db.ForeignKey("tunes.id"), primary_key=True))
 class Tune(db.Model):
     __tablename__ = "tunes"
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(120), unique=True)
-    composer = db.Column(db.String(64))
+    title = db.Column(db.String(120), unique=True, nullable=False)
+    composer = db.Column(db.String(64), nullable=False)
     key = db.Column(db.String(3))
     other_key = db.Column(db.String(12))
     song_form = db.Column(db.String(20))

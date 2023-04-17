@@ -1,49 +1,4 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Enter a Tune</h1>
-<form action="" method="post">
-    {{ form.hidden_tag() }}
-    <p>
-        {{ form.title.label }} <br>
-        {{ form.title(size=20) }} <br>
-    </p>
-    <p>
-        {{ form.composer.label }} <br>
-        {{ form.composer(size=20) }} <br>
-    </p>
-    <p>
-        {{ form.key.label }} <br>
-        {{ form.key(size=20) }} <br>
-    </p>
-    <p>
-        {{ form.other_key.label }} <br>
-        {{ form.other_key(size=20) }} <br>
-    </p>
-    <p>
-        {{ form.song_form.label }} <br>
-        {{ form.song_form(size=20) }} <br>
-    </p>
-    <p>
-        {{ form.style.label }} <br>
-        {{ form.style(size=20) }} <br>
-    </p>
-    <p>
-        {{ form.meter.label }} <br>
-        {{ form.meter(size=20) }} <br>
-    </p>
-    <p>
-        {{ form.year.label }} <br>
-        {{ form.year(size=20) }} <br>
-    </p>
-    <p>
-        {{ form.decade.label }} <br>
-        {{ form.decade(size=20) }} <br>
-    </p>
-    <p>
-        {{ form.knowledge.label }} <br>
-        {{ form.knowledge(size=20) }} <br>
-    </p>
-    <p>{{ form.submit() }}</p>
-</form>
 {% endblock %}
