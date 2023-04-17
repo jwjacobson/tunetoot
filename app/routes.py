@@ -6,7 +6,8 @@ from app.models import Tune
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html")
+    tunes = Tune.query.all()
+    return render_template("index.html", tunes=tunes)
 
 @app.route('/entry', methods=['GET', 'POST'])
 def entry():
@@ -23,7 +24,7 @@ def entry():
         year = form.year.data
         decade = form.decade.data
         knowledge = form.knowledge.data
-        print(title, composer)
+        print(title + ' | ' + composer)
         check_tune = (
             db.session.execute(
                 db.select(Tune).filter(
