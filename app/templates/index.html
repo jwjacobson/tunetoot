@@ -9,8 +9,16 @@
     tr:nth-child(even) {background-color: lightpink;}
     tr:hover {color:lightcoral; background-color: darkmagenta;}
     tr:nth-child(1) {color:lightcoral; background-color: darkmagenta;}
-
     </style>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.search_term.label }}
+        {{ form.search_term(size=64) }}
+        {{ form.submit() }}
+    </div>
+    <hr>
+</form>
 <table style = width:100%;>
     <tr>
         <th>Tune ID</th>

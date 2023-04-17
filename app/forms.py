@@ -15,3 +15,7 @@ class TuneForm(FlaskForm):
     decade = StringField('Decade')
     knowledge = RadioField('Knowledge', choices=["Know", "Learning", "Don't Know"])
     submit = SubmitField('Submit')
+
+class SearchForm(FlaskForm):
+    search_term = StringField('Search Term')
+    submit = SubmitField('Search')
