@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<table>
+<style>
+    table, th, td {
+      border-bottom: 1px groove black;
+      border-collapse: collapse;
+    }
+    tr:nth-child(even) {background-color: lightpink;}
+    tr:hover {color:lightcoral; background-color: darkmagenta;}
+    tr:nth-child(1) {color:lightcoral; background-color: darkmagenta;}
+
+    </style>
+<table style = width:100%;>
     <tr>
         <th>Tune ID</th>
         <th>Title</th>
