@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Editing Tune {{ form.id }}, {{ form.title }}</h1>
+<h2>Editing Tune {{ tune.id }}, "{{ tune.title }}"</h2>
 <form action="" method="post">
     {{ form.hidden_tag() }}
     <p>

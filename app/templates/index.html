@@ -3,18 +3,49 @@
 {% block content %}
 <style>
     table, th, td {
-      border-bottom: 1px groove black;
+      border-bottom: 1px solid darkseagreen;
       border-collapse: collapse;
     }
     tr:nth-child(even) {background-color: lightpink;}
-    tr:hover {color:lightcoral; background-color: darkmagenta;}
-    tr:nth-child(1) {color:lightcoral; background-color: darkmagenta;}
-    </style>
+    tr:nth-child(odd) {background-color: blanchedalmond;}
+    tr:hover {background-color: darkseagreen;}
+    tr:nth-child(1) {color:black; background-color: darkseagreen;}
+
+    .editbutton:link, .editbutton:visited {
+  background-color: lightpink;
+  color: black;
+  border: 2px solid olive;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 42px;
+}
+
+.editbutton:hover, .editbutton:active {
+  background-color: darkseagreen;
+}
+
+.deletebutton:link, .deletebutton:visited {
+  background-color: lightpink;
+  color: black;
+  border: 2px solid olive;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 42px;
+}
+
+.deletebutton:hover, .deletebutton:active {
+  background-color: red;
+}
+</style>
 <form action="" method="post">
     {{ form.hidden_tag() }}
     <div>
         {{ form.search_term.label }}
-        {{ form.search_term(size=64) }}
+        {{ form.search_term(size=32) }}
         {{ form.submit() }}
     </div>
     <br>
@@ -47,7 +78,11 @@
         <td>{{ tune.year }}</td>
         <td>{{ tune.decade }}</td>
         <td>{{ tune.knowledge }}</td>
-        <td><a href="{{ url_for('edit_tune', tune_id=tune.id) }}">Edit</a></td>
+        <td>
+            <a class="editbutton" href="{{ url_for('edit_tune', tune_id=tune.id) }}">Edit</a>
+            <a class="deletebutton" href="{{ url_for('delete_tune', tune_id=tune.id) }}">Delete</a>
+        </td>
+        <td></td>
     </tr>
     {% endfor %}
 </table>

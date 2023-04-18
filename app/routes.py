@@ -57,8 +57,8 @@ def tune_entry():
         db.session.add(new_tune)
         db.session.commit()
         flash(f"Tune {new_tune.id}, \"{new_tune.title}\", entered.", 'info')
-        return redirect(url_for('entry'))
-    return render_template("entry.html", form=form)
+        return redirect(url_for('tune_entry'))
+    return render_template("tune_entry.html", form=form)
 
 @app.route("/edit_tune/<tune_id>", methods=["GET", "post"])
 def edit_tune(tune_id):
@@ -76,7 +76,7 @@ def edit_tune(tune_id):
         tune_to_edit.decade = form.decade.data
         tune_to_edit.knowledge = form.knowledge.data
         db.session.commit()
-        flash("Changes saved.", "info")
+        flash(f'Changes saved to Tune {tune_to_edit.id}: "{tune_to_edit.title}.', 'info')
         return redirect(url_for("index"))
 
     form.title.data = tune_to_edit.title
@@ -92,17 +92,10 @@ def edit_tune(tune_id):
     return render_template("edit.html", form=form, tune=tune_to_edit)
 
 
-@app.route("/delete/<entry_id>")
-def delete_entry(entry_id):
-    entry_to_delete = Entry.query.get_or_404(entry_id)
-    if entry_to_delete.submitter != current_user:
-        flash("You are not authorized to delete this entry.", "dark")
-        return redirect(url_for("index"))
-
-    db.session.delete(entry_to_delete)
+@app.route("/delete_tune/<tune_id>")
+def delete_tune(tune_id):
+    tune_to_delete = Tune.query.get_or_404(tune_id)
+    db.session.delete(tune_to_delete)
     db.session.commit()
-    flash(
-        'Entry deleted.',
-        "info",
-    )
+    flash(f'Tune {tune_to_delete.id}: "{tune_to_delete.title}" deleted.', 'info')
     return redirect(url_for("index"))
