@@ -17,5 +17,5 @@ class TuneForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class SearchForm(FlaskForm):
-    search_term = StringField('Search Term')
+    search_term = StringField('Universal Search')
     submit = SubmitField('Search')

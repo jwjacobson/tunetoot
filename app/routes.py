@@ -31,17 +31,10 @@ def tune_entry():
         decade = form.decade.data
         knowledge = form.knowledge.data
         print(title + ' | ' + composer)
-        check_tune = (
-            db.session.execute(
-                db.select(Tune).filter(
-                    (Tune.title == title)
-                )
-            )
-            .scalars()
-            .all()
-        )
+        check_tune = db.session.execute(db.select(Tune).filter((Tune.title == title))).scalars().all()
         if check_tune:
-            flash("Tune already exists.")
+            flash(f'Error: A tune called {title} already exists.', "info")
+            return redirect(url_for('tune_entry'))
         new_tune = Tune(
             title=title,
             composer=composer,
@@ -76,7 +69,7 @@ def edit_tune(tune_id):
         tune_to_edit.decade = form.decade.data
         tune_to_edit.knowledge = form.knowledge.data
         db.session.commit()
-        flash(f'Changes saved to Tune {tune_to_edit.id}: "{tune_to_edit.title}.', 'info')
+        flash(f'Changes saved to Tune {tune_to_edit.id}: "{tune_to_edit.title}."', 'info')
         return redirect(url_for("index"))
 
     form.title.data = tune_to_edit.title
