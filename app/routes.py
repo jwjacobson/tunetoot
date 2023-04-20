@@ -87,7 +87,7 @@ def tune_entry():
         )
         db.session.add(new_tune)
         db.session.commit()
-        flash(f"Tune {new_tune.id}, \"{new_tune.title}\", entered.", 'info')
+        flash(f"\"{new_tune.title}\" entered as Tune {new_tune.id}.", 'info')
         return redirect(url_for('tune_entry'))
     return render_template("tune_entry.html", form=form)
 

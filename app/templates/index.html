@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %} Home {% endblock %}
+
 {% block content %}
+
 <style>
     table, th, td {
       border-bottom: 1px solid darkseagreen;
@@ -47,7 +50,10 @@
  Tunetoot is a jazz repertoire management app.
 </p>
 <p>
-    Log in or register to get started.   
+    <a href="{{ url_for('login') }}">Log in</a>
+    or
+    <a href="{{ url_for('register') }}">register </a>
+    to get started.   
 </p>
 {% else %}
 <form action="" method="post">
