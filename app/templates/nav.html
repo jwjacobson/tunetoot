@@ -3,7 +3,13 @@
   <div>
     Tunetoot |
     <a href="{{ url_for('index') }}">Home |</a>
-    <a href="{{ url_for('tune_entry') }}">Enter Tunes</a>
+    {% if current_user.is_anonymous %}
+    <a href="{{ url_for('login') }}">Log in |</a>
+    <a href="{{ url_for('register') }}">Sign up </a>
+    {% else %}
+    <a href="{{ url_for('tune_entry') }}">Enter Tunes |</a>
+    <a href="{{ url_for('logout') }}">Log out</a>
+    {% endif %}
   </div>
   <hr>  
 </body>

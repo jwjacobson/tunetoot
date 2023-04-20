@@ -1,7 +1,10 @@
 from app import app, db
-from flask import render_template, flash, url_for, redirect
-from app.forms import TuneForm, SearchForm
-from app.models import Tune
+from flask import render_template, flash, url_for, redirect, request
+from app.forms import TuneForm, SearchForm, RegistrationForm, LoginForm
+from app.models import Tune, User
+from flask_login import current_user, login_user, logout_user, login_required
+from werkzeug.urls import url_parse
+from datetime import datetime
 
 @app.route('/')
 @app.route('/index', methods=['GET', 'POST'])
@@ -11,9 +14,44 @@ def index():
     if form.validate_on_submit():
         search_term = form.search_term.data
         # tunes = Tune.query.filter(Tune.title.ilike(f"%{search_term}%")).all()
-        tunes = db.session.execute(db.select(Tune).where((Tune.id.ilike(f"%{search_term}%")) | (Tune.title.ilike(f"%{search_term}%")) | (Tune.composer.ilike(f"%{search_term}%")) | (Tune.key.ilike(f"%{search_term}%")) | (Tune.other_key.ilike(f"%{search_term}%")) | (Tune.song_form.ilike(f"%{search_term}%")) | (Tune.style.ilike(f"%{search_term}%")) | (Tune.meter.ilike(f"%{search_term}%")) | (Tune.year.ilike(f"%{search_term}%")) | (Tune.decade.ilike(f"%{search_term}%")) | (Tune.knowledge.ilike(f"%{search_term}%")))).scalars().all()
+        tunes = db.session.execute(db.select(Tune).where((Tune.id.ilike(f"%{search_term}%")) | (Tune.title.ilike(f"%{search_term}%")) | (Tune.composer.ilike(f"%{search_term}%")) | (Tune.key.ilike(f"%{search_term}%")) | (Tune.other_key.ilike(f"%{search_term}%")) | (Tune.song_form.ilike(f"%{search_term}%")) | (Tune.style.ilike(f"%{search_term}%")) | (Tune.meter.ilike(f"%{search_term}%")) | (Tune.year.ilike(f"%{search_term}%")) | (Tune.decade.ilike(f"%{search_term}%")))).scalars().all()
     return render_template("index.html", tunes=tunes, form=form)
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash(f'User {user.username} registered')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid credentials')
+            return redirect(url_for('login'))
+        login_user(user, remember=form.remember_me.data)
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('index')
+        return redirect(next_page)
+    return render_template('login.html', title='Sign in', form=form)
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 @app.route('/tune_entry', methods=['GET', 'POST'])
 def tune_entry():
@@ -29,7 +67,7 @@ def tune_entry():
         meter = form.meter.data
         year = form.year.data
         decade = form.decade.data
-        knowledge = form.knowledge.data
+        # knowledge = form.knowledge.data
         print(title + ' | ' + composer)
         check_tune = db.session.execute(db.select(Tune).filter((Tune.title == title))).scalars().all()
         if check_tune:
@@ -44,8 +82,8 @@ def tune_entry():
             style=style,
             meter=meter,
             year=year,
-            decade=decade,
-            knowledge=knowledge
+            decade=decade
+            # knowledge=knowledge
         )
         db.session.add(new_tune)
         db.session.commit()
@@ -67,7 +105,7 @@ def edit_tune(tune_id):
         tune_to_edit.meter = form.meter.data
         tune_to_edit.year = form.year.data
         tune_to_edit.decade = form.decade.data
-        tune_to_edit.knowledge = form.knowledge.data
+        # tune_to_edit.knowledge = form.knowledge.data
         db.session.commit()
         flash(f'Changes saved to Tune {tune_to_edit.id}: "{tune_to_edit.title}."', 'info')
         return redirect(url_for("index"))
@@ -81,7 +119,7 @@ def edit_tune(tune_id):
     form.meter.data = tune_to_edit.meter
     form.year.data = tune_to_edit.year
     form.decade.data = tune_to_edit.decade
-    form.knowledge.data = tune_to_edit.knowledge
+    # form.knowledge.data = tune_to_edit.knowledge
     return render_template("edit.html", form=form, tune=tune_to_edit)
 
 
