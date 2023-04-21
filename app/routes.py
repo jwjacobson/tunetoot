@@ -49,11 +49,13 @@ def login():
     return render_template('login.html', title='Sign in', form=form)
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
 @app.route('/tune_entry', methods=['GET', 'POST'])
+@login_required
 def tune_entry():
     form = TuneForm()
     if form.validate_on_submit():
@@ -92,6 +94,7 @@ def tune_entry():
     return render_template("tune_entry.html", form=form)
 
 @app.route("/edit_tune/<tune_id>", methods=["GET", "post"])
+@login_required
 def edit_tune(tune_id):
     form = TuneForm()
     tune_to_edit = Tune.query.get_or_404(tune_id)
@@ -124,9 +127,22 @@ def edit_tune(tune_id):
 
 
 @app.route("/delete_tune/<tune_id>")
+@login_required
 def delete_tune(tune_id):
     tune_to_delete = Tune.query.get_or_404(tune_id)
     db.session.delete(tune_to_delete)
     db.session.commit()
     flash(f'Tune {tune_to_delete.id}: "{tune_to_delete.title}" deleted.', 'info')
+    return redirect(url_for("index"))
+
+@app.route("/options")
+@login_required
+def options():
+    return render_template("options.html")
+
+def delete_user(user_id):
+    user_to_delete = User.query.get_or_404(tune_id)
+    db.session.delete(user_to_delete)
+    db.session.commit()
+    flash(f'User {user_to_delete.id}: "{user_to_delete.username}" deleted.', 'info')
     return redirect(url_for("index"))

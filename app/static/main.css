@@ -1,0 +1,41 @@
+html {
+    background-color: beige;
+}
+
+table, th, td {
+    border-bottom: 1px solid darkseagreen;
+    border-collapse: collapse;
+  }
+  tr:nth-child(even) {background-color: lightpink;}
+  tr:nth-child(odd) {background-color: blanchedalmond;}
+  tr:hover {background-color: darkseagreen;}
+  tr:nth-child(1) {color:black; background-color: darkseagreen;}
+
+  .editbutton:link, .editbutton:visited {
+background-color: lightpink;
+color: black;
+border: 2px solid olive;
+padding: 10px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+width: 42px;
+}
+
+.editbutton:hover, .editbutton:active {
+background-color: darkseagreen;
+}
+
+.deletebutton:link, .deletebutton:visited {
+background-color: lightpink;
+color: black;
+border: 2px solid olive;
+padding: 10px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+width: 42px;
+}
+
+.deletebutton:hover, .deletebutton:active {
+background-color: crimson;

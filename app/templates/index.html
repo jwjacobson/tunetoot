@@ -4,46 +4,6 @@
 
 {% block content %}
 
-<style>
-    table, th, td {
-      border-bottom: 1px solid darkseagreen;
-      border-collapse: collapse;
-    }
-    tr:nth-child(even) {background-color: lightpink;}
-    tr:nth-child(odd) {background-color: blanchedalmond;}
-    tr:hover {background-color: darkseagreen;}
-    tr:nth-child(1) {color:black; background-color: darkseagreen;}
-
-    .editbutton:link, .editbutton:visited {
-  background-color: lightpink;
-  color: black;
-  border: 2px solid olive;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  width: 42px;
-}
-
-.editbutton:hover, .editbutton:active {
-  background-color: darkseagreen;
-}
-
-.deletebutton:link, .deletebutton:visited {
-  background-color: lightpink;
-  color: black;
-  border: 2px solid olive;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  width: 42px;
-}
-
-.deletebutton:hover, .deletebutton:active {
-  background-color: crimson;
-}
-</style>
 {% if current_user.is_anonymous %}
 <h3>Welcome!</h3>
 <p>
@@ -56,6 +16,8 @@
     to get started.   
 </p>
 {% else %}
+<h3>Welcome, {{ current_user.username }}!</h3>
+<p>Here you can view and manage your repertoire.</p>
 <form action="" method="post">
     {{ form.hidden_tag() }}
     <div>
