@@ -140,8 +140,10 @@ def delete_tune(tune_id):
 def options():
     return render_template("options.html")
 
+@app.route("/delete_user/<user_id>")
+@login_required
 def delete_user(user_id):
-    user_to_delete = User.query.get_or_404(tune_id)
+    user_to_delete = User.query.get_or_404(user_id)
     db.session.delete(user_to_delete)
     db.session.commit()
     flash(f'User {user_to_delete.id}: "{user_to_delete.username}" deleted.', 'info')
