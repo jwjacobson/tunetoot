@@ -7,10 +7,10 @@ table, th, td {
     border-collapse: collapse;
     text-align: center;
   }
-  tr:nth-child(even) {background-color: lightpink;}
+  tr:nth-child(even) {background-color: darkseagreen;}
   tr:nth-child(odd) {background-color: blanchedalmond;}
-  tr:hover {background-color: darkseagreen;}
-  tr:nth-child(1) {color:black; background-color: darkseagreen;}
+  tr:hover {background-color: cadetblue;}
+  tr:nth-child(1) {color:black; background-color: cadetblue;}
 
   .editbutton:link, .editbutton:visited {
 background-color: lightpink;

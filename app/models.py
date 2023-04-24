@@ -25,6 +25,7 @@ class Tune(db.Model):
     year = db.Column(db.SmallInteger)
     decade = db.Column(db.String(5))
     players = db.relationship("User", secondary=user_tune, backref="repertoire")
+    groups = db.Column(db.String(100))
 
     def __repr__(self):
         return f'<Tune {self.id}|{self.title}>'
