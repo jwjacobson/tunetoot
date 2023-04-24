@@ -42,7 +42,7 @@
         <!-- <th>Knowledge</th> -->
         <th style="width:20%">Actions</th>
     </tr>
-    {% for tune in tunes %}
+    {% for tune in current_user.repertoire %}
     <tr>
         <td style="width:5%">{{ tune.id }}</td>
         <td style="width:15%">{{ tune.title }}</td>

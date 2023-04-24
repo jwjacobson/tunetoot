@@ -26,6 +26,12 @@ def register():
         user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
+        if form.repertoire.data == "Ethan Iverson's 100 Standards":
+            tunes_to_add = [] 
+            for tune in db.session.execute(db.select(Tune).where((Tune.groups.ilike("ethan100")))):
+                tunes_to_add.append(tune)
+            for tune in tunes_to_add:
+                user.repertoire.append(tune)
         db.session.commit()
         flash(f'User {user.username} registered')
         return redirect(url_for('login'))
@@ -86,8 +92,9 @@ def tune_entry():
             decade=decade
         )
         db.session.add(new_tune)
+        current_user.repertoire.append(new_tune)
         db.session.commit()
-        flash(f"\"{new_tune.title}\" entered as Tune {new_tune.id}.", 'info')
+        flash(f"\"{new_tune.title}\" added to {current_user.username}'s repertoire as Tune {new_tune.id}.", 'info')
         return redirect(url_for('tune_entry'))
     return render_template("tune_entry.html", form=form)
 
@@ -126,9 +133,10 @@ def edit_tune(tune_id):
 @login_required
 def delete_tune(tune_id):
     tune_to_delete = Tune.query.get_or_404(tune_id)
+    current_user.repertoire.remove(tune_to_delete)
     db.session.delete(tune_to_delete)
     db.session.commit()
-    flash(f'Tune {tune_to_delete.id}: "{tune_to_delete.title}" deleted.', 'info')
+    flash(f'Tune {tune_to_delete.id}: "{tune_to_delete.title}" deleted from {current_user.username}\'s repertoire.', 'info')
     return redirect(url_for("index"))
 
 @app.route("/options")
