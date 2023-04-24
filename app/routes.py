@@ -26,13 +26,11 @@ def register():
         user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
-        if form.repertoire.data == "Ethan Iverson's 100 Standards":
-            tunes_to_add = [] 
-            for tune in db.session.execute(db.select(Tune).where((Tune.groups.ilike("ethan100")))):
-                tunes_to_add.append(tune)
-            for tune in tunes_to_add:
-                user.repertoire.append(tune)
         db.session.commit()
+        if form.repertoire.data == "Ethan Iverson's 100 Standards":
+            for tune in db.session.execute(db.select(Tune).where((Tune.groups.ilike("ethan100")))):
+                current_user.repertoire.append(tune)
+
         flash(f'User {user.username} registered')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
