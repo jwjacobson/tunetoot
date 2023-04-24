@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a class="deletebutton" href="{{ url_for('delete_user', user_id=current_user.id) }}">Delete Account</a>
+<h3>User Options</h3>
+<a class="deletebutton" style="width: 100px;" href="{{ url_for('delete_user', user_id=current_user.id) }}">Delete Account</a>
 {% endblock %}

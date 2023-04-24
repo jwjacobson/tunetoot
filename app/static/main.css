@@ -5,6 +5,7 @@ html {
 table, th, td {
     border-bottom: 1px solid darkseagreen;
     border-collapse: collapse;
+    text-align: center;
   }
   tr:nth-child(even) {background-color: lightpink;}
   tr:nth-child(odd) {background-color: blanchedalmond;}
@@ -23,7 +24,7 @@ width: 42px;
 }
 
 .editbutton:hover, .editbutton:active {
-background-color: darkseagreen;
+background-color: moccasin;
 }
 
 .deletebutton:link, .deletebutton:visited {
@@ -38,4 +39,4 @@ width: 42px;
 }
 
 .deletebutton:hover, .deletebutton:active {
-background-color: crimson;
+background-color: red;

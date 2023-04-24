@@ -25,6 +25,7 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    repertoire = RadioField('Initial Repertoire', choices=["Ethan Iverson's 100 Standards", "Empty"])
     submit = SubmitField('Register')
 
     def validate_username(self, username):
