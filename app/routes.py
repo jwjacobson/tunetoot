@@ -28,7 +28,7 @@ def register():
         db.session.add(user)
         if form.repertoire.data == "Ethan Iverson's 100 Standards":
             for tune in db.session.execute(db.select(Tune).where((Tune.groups.ilike("ethan100")))):
-                current_user.repertoire.append(tune)
+                user.repertoire.append(tune)
         db.session.commit()
         flash(f'User {user.username} registered')
         return redirect(url_for('login'))
