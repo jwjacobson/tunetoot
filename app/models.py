@@ -23,6 +23,7 @@ class Tune(db.Model):
     style = db.Column(db.String(20))
     meter = db.Column(db.SmallInteger)
     year = db.Column(db.SmallInteger)
+    # decade = db.column_property(str(year))
     decade = db.Column(db.String(5))
     players = db.relationship("User", secondary=user_tune, backref="repertoire")
     groups = db.Column(db.String(100))

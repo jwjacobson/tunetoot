@@ -71,7 +71,6 @@ def tune_entry():
         style = form.style.data
         meter = form.meter.data
         year = form.year.data
-        decade = form.decade.data
         print(title + ' | ' + composer)
         check_tune = db.session.execute(db.select(Tune).filter((Tune.title == title))).scalars().all()
         if check_tune:
@@ -86,7 +85,7 @@ def tune_entry():
             style=style,
             meter=meter,
             year=year,
-            decade=decade
+            decade=str(year)[:3] + "0s"
         )
         db.session.add(new_tune)
         current_user.repertoire.append(new_tune)
@@ -109,7 +108,7 @@ def edit_tune(tune_id):
         tune_to_edit.style = form.style.data
         tune_to_edit.meter = form.meter.data
         tune_to_edit.year = form.year.data
-        tune_to_edit.decade = form.decade.data
+        tune_to_edit.decade = str(form.year.data)[:3] + "0s"
         db.session.commit()
         flash(f'Changes saved to Tune {tune_to_edit.id}: "{tune_to_edit.title}."', 'info')
         return redirect(url_for("index"))
@@ -122,7 +121,6 @@ def edit_tune(tune_id):
     form.style.data = tune_to_edit.style
     form.meter.data = tune_to_edit.meter
     form.year.data = tune_to_edit.year
-    form.decade.data = tune_to_edit.decade
     return render_template("edit.html", form=form, tune=tune_to_edit)
 
 

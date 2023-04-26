@@ -12,7 +12,7 @@ class TuneForm(FlaskForm):
     style = StringField('Style')
     meter = IntegerField('Meter')
     year = IntegerField('Year')
-    decade = StringField('Decade')
+    # decade = StringField('Decade')
     # knowledge = RadioField('Knowledge', choices=["Know", "Learning", "Don't Know"])
     submit = SubmitField('Submit')
 
