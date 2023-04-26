@@ -8,8 +8,8 @@ user_tune = db.Table("user_tune",
 db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
 db.Column("tune_id", db.Integer, db.ForeignKey("tunes.id"), primary_key=True),
 db.Column("knowledge", db.String(10)),
-db.Column("started_learning", db.DateTime),
-db.Column("last_played", db.DateTime)
+db.Column("started_learning", db.DateTime, default=datetime.utcnow),
+db.Column("last_played", db.DateTime, default=datetime.utcnow)
 )
 
 class Tune(db.Model):
