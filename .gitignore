@@ -2,4 +2,3 @@ venv/
 README.md
 __pycache__/
 app/__pycache__/
-app.db

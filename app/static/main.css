@@ -7,13 +7,13 @@ table, th, td {
     border-collapse: collapse;
     text-align: center;
   }
-  tr:nth-child(even) {background-color: darkseagreen;}
+  tr:nth-child(even) {background-color: rgb(176, 215, 176);}
   tr:nth-child(odd) {background-color: blanchedalmond;}
-  tr:hover {background-color: cadetblue;}
-  tr:nth-child(1) {color:black; background-color: cadetblue;}
+  tr:hover {background-color: rgb(114, 187, 189);}
+  tr:nth-child(1) {color:black; background-color: rgb(114, 187, 189);}
 
   .editbutton:link, .editbutton:visited {
-background-color: lightpink;
+background-color: rgb(206, 232, 206);
 color: black;
 border: 2px solid olive;
 padding: 10px 20px;
@@ -24,11 +24,11 @@ width: 42px;
 }
 
 .editbutton:hover, .editbutton:active {
-background-color: moccasin;
+background-color: rgb(176, 215, 176);
 }
 
 .deletebutton:link, .deletebutton:visited {
-background-color: lightpink;
+background-color: rgb(241, 206, 212);
 color: black;
 border: 2px solid olive;
 padding: 10px 20px;
