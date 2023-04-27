@@ -1,6 +1,26 @@
 {% extends 'base.html' %}
 
+{% block title %} Options {% endblock %}
+
 {% block content %}
 <h3>User Options</h3>
-<a class="deletebutton" style="width: 100px;" href="{{ url_for('delete_user', user_id=current_user.id) }}">Delete Account</a>
+<div>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.add_tunes.label }}<br>
+        {% for subfield in form.add_tunes %}
+    <p>    
+        {{ subfield }}
+        {{ subfield.label }}
+    </p>
+       {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+</div>
+<hr>
+<div>
+    <a class="deletebutton" style="width: 100px;" href="{{ url_for('delete_user', user_id=current_user.id) }}">Delete Account</a>
+</div>
 {% endblock %}

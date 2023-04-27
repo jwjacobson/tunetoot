@@ -12,7 +12,6 @@ class TuneForm(FlaskForm):
     style = StringField('Style')
     meter = IntegerField('Meter')
     year = IntegerField('Year')
-    # decade = StringField('Decade')
     # knowledge = RadioField('Knowledge', choices=["Know", "Learning", "Don't Know"])
     submit = SubmitField('Submit')
 
@@ -43,3 +42,9 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign in')
+
+class OptionsForm(FlaskForm):
+    add_tunes = RadioField('Add Tunes:', choices=["to the public database", "to my repertoire only"])
+    submit = SubmitField('Save Changes')
+
+

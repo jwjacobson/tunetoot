@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, flash, url_for, redirect, request
-from app.forms import TuneForm, SearchForm, RegistrationForm, LoginForm
+from app.forms import TuneForm, SearchForm, RegistrationForm, LoginForm, OptionsForm
 from app.models import Tune, User
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -137,7 +137,8 @@ def delete_tune(tune_id):
 @app.route("/options")
 @login_required
 def options():
-    return render_template("options.html")
+    form = OptionsForm()    
+    return render_template("options.html", form=form)
 
 @app.route("/delete_user/<user_id>")
 @login_required
