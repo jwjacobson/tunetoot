@@ -134,7 +134,7 @@ def delete_tune(tune_id):
     flash(f'Tune {tune_to_delete.id}: "{tune_to_delete.title}" deleted from {current_user.username}\'s repertoire.', 'info')
     return redirect(url_for("index"))
 
-@app.route("/options")
+@app.route("/options", methods=["GET", "post"])
 @login_required
 def options():
     form = OptionsForm()    

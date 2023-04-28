@@ -44,7 +44,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign in')
 
 class OptionsForm(FlaskForm):
-    add_tunes = RadioField('Add Tunes:', choices=["to the public database", "to my repertoire only"])
+    add_tunes = RadioField('Add Tunes:', choices=["to my repertoire and the public database", "to my repertoire only"])
     submit = SubmitField('Save Changes')
 
 
