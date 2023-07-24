@@ -16,6 +16,40 @@
     to get started.   
 </p>
 {% else %}
+# script adapted from https://xteddy.org/lsm/
+<script>
+$(document).ready(function() {
+    var table = $('#lsmtable').DataTable({
+        ordering: true,
+        deferRender: true,
+        paging: true,
+        ajaxSource: 'ajax_data.txt',
+        fixedColumns: false,
+            dom: 'Blfrtip',
+        columns: [
+            { data: 'title' },
+            { data: 'description' },
+            { data: 'version' },
+            { data: 'entered-date' },
+            { data: 'author' },
+            { data: 'keywords' },
+            { data: 'primary-site' },
+            { data: 'alternate-site' },
+            { data: 'original-site' },
+            { data: 'platforms' },
+            { data: 'copying-policy' },
+        ],
+           buttons: [ 'columnsToggle' ],
+    });
+
+    var extraColumnHeaders = ["keywords", "maintained-by", "primary-site",
+        "alternate-site", "original-site", "platforms", "copying-policy"];
+
+    for (var i = 0; i < extraColumnHeaders.length; i++) {
+        table.column(i + 4).visible(false);
+    }
+});
+</script>
 <h3>Welcome, {{ current_user.username }}!</h3>
 <p>Here you can view and manage your repertoire.</p>
 <form action="" method="post">

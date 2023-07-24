@@ -4,6 +4,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from hashlib import md5
 
+#converting user_tune to a class (kevin's recommendation)
+# class UserTune(db.Model):
+#     __tablename__ = "user_tune"
+#     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key=True)
+#     tune_id = db.Column(db.Integer, db.ForeignKey("tunes.id"), primary_key=True)
+#     knowledge = db.Column(db.String(10))
+#     started_learning = db.Column(db.DateTime, default=datetime.utcnow)
+#     last_played = db.Column(db.DateTime, default=datetime.utcnow)
+
+# old version of user_tune table
 user_tune = db.Table("user_tune",
 db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
 db.Column("tune_id", db.Integer, db.ForeignKey("tunes.id"), primary_key=True),
