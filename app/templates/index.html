@@ -17,7 +17,7 @@
 </p>
 {% else %}
 <!-- script adapted from https://xteddy.org/lsm/ -->
-<script>
+<!-- <script>
 $(document).ready(function() {
     var table = $('#lsmtable').DataTable({
         ordering: true,
@@ -49,8 +49,45 @@ $(document).ready(function() {
         table.column(i + 4).visible(false);
     }
 });
-</script>
-<h3>Welcome, {{ current_user.username }}!</h3>
+</script> -->
+<!-- <h3>Welcome, {{ current_user.username }}!</h3>
+<div id="lsmtable_wrapper" class="dataTables_wrapper">
+    <div class="dt-buttons">
+        <button class="dt-button buttons-columnVisibility active" tabindex="0" aria-controls="lsmtable" type="button" data-cv-idx="0"><span>Title</span></button>
+        <button class="dt-button buttons-columnVisibility active" tabindex="0" aria-controls="lsmtable" type="button" data-cv-idx="1"><span>Description</span></button>
+        <button class="dt-button buttons-columnVisibility active" tabindex="0" aria-controls="lsmtable" type="button" data-cv-idx="2"><span>Version</span></button>
+        <button class="dt-button buttons-columnVisibility active" tabindex="0" aria-controls="lsmtable" type="button" data-cv-idx="3"><span>Date</span></button>
+        <button class="dt-button buttons-columnVisibility" tabindex="0" aria-controls="lsmtable" type="button" data-cv-idx="4"><span>Author</span></button>
+        <button class="dt-button buttons-columnVisibility" tabindex="0" aria-controls="lsmtable" type="button" data-cv-idx="5"><span>Keywords</span></button>
+        <button class="dt-button buttons-columnVisibility" tabindex="0" aria-controls="lsmtable" type="button" data-cv-idx="6"><span>Primary Site</span></button>
+        <button class="dt-button buttons-columnVisibility" tabindex="0" aria-controls="lsmtable" type="button" data-cv-idx="7"><span>Alternate Site</span></button>
+        <button class="dt-button buttons-columnVisibility" tabindex="0" aria-controls="lsmtable" type="button" data-cv-idx="8"><span>Original Site</span></button>
+        <button class="dt-button buttons-columnVisibility" tabindex="0" aria-controls="lsmtable" type="button" data-cv-idx="9"><span>Platforms</span></button>
+        <button class="dt-button buttons-columnVisibility" tabindex="0" aria-controls="lsmtable" type="button" data-cv-idx="10"><span>Copying Policy</span></button>
+    </div>
+    <div class="dataTables_length" id="lsmtable_length">
+        <label>Show <select name="lsmtable_length" aria-controls="lsmtable" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
+    </div>
+    <div id="lsmtable_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="lsmtable"></label>
+    </div>
+    <table id="lsmtable" class="table-striped row-border cell-border display compat dataTable" style="width: 100%;" aria-describedby="lsmtable_info">
+    <thead>
+        <tr>
+            <th class="sorting sorting_asc" tabindex="0" aria-controls="lsmtable" rowspan="1" colspan="1" style="width: 75px;" aria-label="Title: activate to sort column descending" aria-sort="ascending">Title</th>
+            <th class="sorting" tabindex="0" aria-controls="lsmtable" rowspan="1" colspan="1" style="width: 816px;" aria-label="Description: activate to sort column ascending">Description</th>
+            <th class="sorting" tabindex="0" aria-controls="lsmtable" rowspan="1" colspan="1" style="width: 68px;" aria-label="Version: activate to sort column ascending">Version</th>
+            <th class="sorting" tabindex="0" aria-controls="lsmtable" rowspan="1" colspan="1" style="width: 35px;" aria-label="Date: activate to sort column ascending">Date</th>
+        </tr>
+
+    </table>
+    <div class="dataTables_info" id="lsmtable_info" role="status" aria-live="polite">Showing 1 to 10 of 2,345 entries</div>
+    <div class="dataTables_paginate paging_simple_numbers" id="lsmtable_paginate"><a class="paginate_button previous disabled" aria-controls="lsmtable" data-dt-idx="previous" tabindex="-1" id="lsmtable_previous">Previous</a><span><a class="paginate_button current" aria-controls="lsmtable" data-dt-idx="0" tabindex="0">1</a><a class="paginate_button " aria-controls="lsmtable" data-dt-idx="1" tabindex="0">2</a><a class="paginate_button " aria-controls="lsmtable" data-dt-idx="2" tabindex="0">3</a><a class="paginate_button " aria-controls="lsmtable" data-dt-idx="3" tabindex="0">4</a><a class="paginate_button " aria-controls="lsmtable" data-dt-idx="4" tabindex="0">5</a><span class="ellipsis">…</span><a class="paginate_button " aria-controls="lsmtable" data-dt-idx="234" tabindex="0">235</a></span><a class="paginate_button next" aria-controls="lsmtable" data-dt-idx="next" tabindex="0" id="lsmtable_next">Next</a>
+    </div>
+</div> -->
+    <!-- <div> -->
+    
+    
+
 <p>Here you can view and manage your repertoire.</p>
 <form action="" method="post">
     {{ form.hidden_tag() }}
